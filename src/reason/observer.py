@@ -1,0 +1,23 @@
+"""Optional search event hooks; NullObserver is the default for all callers."""
+
+from typing import Protocol
+
+
+class MCTSObserver(Protocol):
+    def on_env_reset(self, event: dict) -> None: ...
+    def on_step(self, event: dict) -> None: ...
+    def on_lm_expand(self, event: dict) -> None: ...
+    def on_expand(self, event: dict) -> None: ...
+    def on_select(self, event: dict) -> None: ...
+    def on_backup(self, event: dict) -> None: ...
+    def on_path_finish(self, event: dict) -> None: ...
+
+
+class NullObserver:
+    def on_env_reset(self, event: dict) -> None: pass
+    def on_step(self, event: dict) -> None: pass
+    def on_lm_expand(self, event: dict) -> None: pass
+    def on_expand(self, event: dict) -> None: pass
+    def on_select(self, event: dict) -> None: pass
+    def on_backup(self, event: dict) -> None: pass
+    def on_path_finish(self, event: dict) -> None: pass

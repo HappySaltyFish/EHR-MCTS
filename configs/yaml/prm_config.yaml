@@ -1,0 +1,32 @@
+use_rag: "yes"
+train_label: "prm_target_label"
+max_token_len: 4096
+do_filtering: "yes"
+device: "0,1,2,3"
+dtype: "bfloat16"
+
+base_name: "llama"
+model_path: "model/Llama-3-8B-Instruct"
+
+train_json: "../../data/sample_traj/nl_dataset.json"
+train_ratio: 1.0
+output_dir: "checkpoints/reward_model_v1"
+num_train_epochs: 1
+learning_rate: 2.0e-6
+lr_scheduler_type: "cosine"
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 64
+logging_steps: 1
+bf16: true
+save_steps: 1000
+
+online: true
+wandb_project: "Med-PRM"
+wandb_token: ""
+
+use_medtok: true
+medtok_path: "model/MedTok"
+data_path: "../../data/ukb_data"
+medtok_emb_npy: "../../data/ukb_data/medtok_embeddings.npy"
+medtok_projector_path: ""
+medtok_concat_len: 512
